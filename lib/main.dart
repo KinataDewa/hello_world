@@ -1,73 +1,60 @@
 import 'package:flutter/material.dart';
-import 'basic_widgets/scaffold_widget.dart';
-import 'basic_widgets/alert_dialog_widget.dart';
-import 'basic_widgets/text_field_widget.dart';
-import 'basic_widgets/date_picker_widget.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Widgets Example',
-      theme: ThemeData(primarySwatch: Colors.red),
-      home: const HomeWidget(),
-      routes: {
-        '/scaffold': (context) => const ScaffoldWidget(),
-        '/alertDialog': (context) => const AlertDialogWidget(),
-        '/textField': (context) => const TextFieldWidget(),
-        '/datePicker': (context) => const DatePickerWidget(),
-      },
+    // Membuat widget titleSection
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(32.0), // Padding di sepanjang setiap tepi
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment:
+                  CrossAxisAlignment.start, // Posisi kolom di awal baris
+              children: [
+                Container(
+                  padding: const EdgeInsets.only(bottom: 8.0), // Padding bawah
+                  child: const Text(
+                    'Wisata Gunung di Batu',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0, // Ukuran font
+                    ),
+                  ),
+                ),
+                Text(
+                  'Batu, Malang, Indonesia',
+                  style: TextStyle(
+                    color: Colors.grey, // Warna teks menjadi abu-abu
+                    fontSize: 16.0, // Ukuran font
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.star, // Ikon bintang
+            color: Colors.red, // Warna merah
+          ),
+          const Text('41'), // Jumlah rating
+        ],
+      ),
     );
-  }
-}
 
-class HomeWidget extends StatelessWidget {
-  const HomeWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('All Widgets Example')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/scaffold');
-              },
-              child: const Text('Scaffold Widget'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/alertDialog');
-              },
-              child: const Text('Alert Dialog Widget'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/textField');
-              },
-              child: const Text('Text Field Widget'),
-            ),
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/datePicker');
-              },
-              child: const Text('Date Picker Widget'),
-            ),
-          ],
+    // Kembali ke MaterialApp
+    return MaterialApp(
+      title:
+          'Flutter layout: Nama dan NIM Anda', // Ganti dengan nama dan NIM kamu
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter layout demo'),
         ),
+        body: titleSection, // Menampilkan titleSection di body
       ),
     );
   }
